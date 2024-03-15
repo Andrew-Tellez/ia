@@ -38,4 +38,3 @@ def goal_test(reinas:list[int]):
                 ataques += 2
     return ataques
 
-print(expand_gs([0,2,3,1]))

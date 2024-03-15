@@ -1,4 +1,4 @@
-from expand_tree import expand
+from expand_tree import expand, expand_gs
 from arbol import Nodo
 import sys
 
@@ -75,17 +75,17 @@ def ldfs(F:list[Nodo], nivel:int, limite:int):
     return ldfs(F, nivel, limite)
 
 limite = 1000
-while(True):
-    solucion = ldfs([raiz], nivel=0, limite=limite)
+# while(True):
+#     solucion = ldfs([raiz], nivel=0, limite=limite)
     
-    if (solucion):
-        break
+#     if (solucion):
+#         break
 
-    # se reinicia el arreglo
-    raiz = Nodo([0,0,0,0])
+#     # se reinicia el arreglo
+#     raiz = Nodo([0,0,0,0])
 
-    # incremento para la próxima iteración
-    limite += 10000
+#     # incremento para la próxima iteración
+#     limite += 10000
 
 def gs(f:list[Nodo]):
     if len(f) == 0:
@@ -93,5 +93,9 @@ def gs(f:list[Nodo]):
         return
     ea = f.pop(0)
     if goal_test(ea.dato):
-        print("solucion encontrada")
+        print("solucion encontrada en",ea.dato)
         return
+    mejor_hijo = expand_gs(ea.dato)
+    gs([Nodo(mejor_hijo)])
+
+gs([Nodo([1,0,0,2])])
